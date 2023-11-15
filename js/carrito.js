@@ -1,5 +1,5 @@
 import { mostrarCarrito } from "./funciones.js";
-import { funcionFiltrar } from "./funciones.js";
+// import { funcionFiltrar } from "./funciones.js";
 //import { sumoTotal } from "./funciones.js";
 
 const carritoID = document.getElementById('carrito')
@@ -101,14 +101,20 @@ const finalizarVenta = () => {
 
 }
 const finalizarCompra = document.getElementById('finalizarCompra')
+const agradecimiento = document.getElementById('agradecimiento')
 
 finalizarCompra.addEventListener('click', () => {
   finalizarVenta()
   .then((response) => {
     console.log(response) 
+    carritoID.innerHTML = ''
     alert(response)
-    vacioCarrito()
-
+    return carritoID.innerHTML += `
+                                    <div class="agradecimiento">
+                                        <p>¡Muchas Gracias por tu Compra!</p>
+                                    </div> 
+            ` 
    }) 
+   
    .catch((err) =>  alert(err) )
 })
