@@ -95,26 +95,34 @@ const finalizarVenta = () => {
     
     setTimeout(() => {
       if(aceptar) resolve('Su compra fue finalizada, le vamos a enviar un emial de seguiento')
-      reject(new Error('Para finalizar la compra tiene que presionar aceptar'))
+      reject('Para finalizar la compra tiene que presionar aceptar')
     }, 2000)
   })
 
 }
 const finalizarCompra = document.getElementById('finalizarCompra')
-const agradecimiento = document.getElementById('agradecimiento')
 
 finalizarCompra.addEventListener('click', () => {
   finalizarVenta()
   .then((response) => {
     console.log(response) 
     carritoID.innerHTML = ''
-    alert(response)
+    //alert(response)
     return carritoID.innerHTML += `
                                     <div class="agradecimiento">
-                                        <p>¡Muchas Gracias por tu Compra!</p>
+                                        <p>${response}</p>
                                     </div> 
             ` 
    }) 
    
-   .catch((err) =>  alert(err) )
+   .catch((err) =>  {
+    carritoID.innerHTML = ''
+    //alert(response)
+    return carritoID.innerHTML += `
+                                    <div class="agradecimiento">
+                                        <p>${err}</p>
+                                    </div> 
+            ` 
+    
+   } )
 })
