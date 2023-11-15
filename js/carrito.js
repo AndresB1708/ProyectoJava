@@ -75,22 +75,40 @@ EliminarDeCarrito.forEach((boton) => {
 
   })
 })
+
 const vaciarCarrito = document.getElementById('vaciarCarrito')
 
 vaciarCarrito.addEventListener('click', () => {
+
+  vacioCarrito()
+})
+
+function vacioCarrito(){
   localStorage.clear()
   window.location = './carrito.html'
+}
+
+//   PROMESA /////////////////////
+const finalizarVenta = () => {
+  return new Promise((resolve, reject) => {
+    let aceptar = confirm("Clicka en Aceptar o Cancelar"); // true o falso
+    
+    setTimeout(() => {
+      if(aceptar) resolve('Su compra fue finalizada, le vamos a enviar un emial de seguiento')
+      reject(new Error('Para finalizar la compra tiene que presionar aceptar'))
+    }, 2000)
+  })
+
+}
+const finalizarCompra = document.getElementById('finalizarCompra')
+
+finalizarCompra.addEventListener('click', () => {
+  finalizarVenta()
+  .then((response) => {
+    console.log(response) 
+    alert(response)
+    vacioCarrito()
+
+   }) 
+   .catch((err) =>  alert(err) )
 })
-//USO DE PROMESA
-// const buscarEnArray = (id) => {
-//   return new Promise((resolve, reject) => {
-//    const editarTotal = JSON.parse(localStorage.getItem('carrito')) || []
-//    let find_producto = editarTotal.find(producto => producto.id === Number(id))
-//     setTimeout(() => {
-//       if(find_producto) resolve({
-//         const copioArray = [...editarTotal]
-//       })
-//       reject(new Error('No se encuentra el producto'))
-//     }, 0)
-//   })
-// }
