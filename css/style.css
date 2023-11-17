@@ -248,13 +248,11 @@ footer{
 
 .agradecimiento{
   height: 100px;
-  background-color: #b1c7a6;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #100a0a;
   font-size: 18px;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  border: 1px solid #100a0a;
   margin: auto;
 }
